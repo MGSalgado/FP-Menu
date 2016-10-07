@@ -15,10 +15,11 @@ public class FPMenú {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        System.out.println("La opción elegida es: "+ menu());   // TODO code application logic here
+           // TODO code application logic here
         int m;
         float a;
         m=menu();
+        System.out.println("La opción elegida es: "+ m);
         a=calculaAreas(m);
         muestraResultado(a,m);
         
@@ -30,6 +31,7 @@ public class FPMenú {
     public static int menu (){
         Scanner entrada = new Scanner(System.in);
         int opcion;
+        
         do{
             System.out.println("****      Cálculo de áreas    ****");
             System.out.println("**** Menú: ****");
@@ -38,11 +40,11 @@ public class FPMenú {
             System.out.println("2. Área de círculos");
             System.out.println("3. Área de triángulos");
             System.out.println("0. Salir");
-            opcion = entrada.nextInt();       
-          }while (opcion>3 || opcion <0);
-        return opcion;
+            opcion = entrada.nextInt();        
+        } while (opcion<0||opcion>3);
+    return opcion;
     }
-    
+
     public static float calculaAreas (int op){
         float area;
         switch (op){
@@ -63,6 +65,7 @@ public class FPMenú {
     }
     public static float areaCuadrado(){    
         float area, ladoCuadrado;
+        System.out.println("Introduzca lado");
         Scanner lado = new Scanner (System.in);
         ladoCuadrado = lado.nextFloat();
         area = ladoCuadrado*ladoCuadrado;
@@ -72,17 +75,20 @@ public class FPMenú {
     public static float areaCirculo(){
         double radio;
         double area1;
+        System.out.println("Introduzca radio");
         Scanner radioC = new Scanner (System.in);
         radio = radioC.nextFloat();
-        area1 = (3.1416*radio*radio)/2;
+        area1 = (3.1416*radio*radio);
         float area = (float) area1;
         return area;
     }
     
     public static float areaTriangulo(){
         float area, base, altura;
+        System.out.println("Introduzca base");
         Scanner baseT = new Scanner (System.in);
         base = baseT.nextFloat();
+        System.out.println("Introduzca altura");
         Scanner alturaT = new Scanner (System.in);
         altura = alturaT.nextFloat();
         area = base*altura/2;
@@ -93,21 +99,22 @@ public class FPMenú {
         System.out.println("Programa terminado");
     }
     
-    public static void muestraResultado (float area){
-        System.out.println("el area es " + area);
     
-    }
     public static void muestraResultado(float area, int r){
-        String figura;
+        String figura = null;
         if (r == 1) { figura = "Cuadrado";
         }else{
             if (r == 2) {figura = "Circulo";
             }else{
-                figura = "Triangulo";
-        }
+                if (r == 3){figura = "Triangulo";
+                }else{System.out.println("Gracias por participar");
+                        System.exit(r);
+                }
+            }
+            
         }
         
-        System.out.println("el area del "+ figura + "es igual a: "+ area);
+        System.out.println("El área del "+ figura + " es igual a: "+ area);
         
     }
 }
